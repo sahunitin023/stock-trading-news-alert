@@ -3,8 +3,8 @@ import math
 import secretKey
 from datetime import date
 
-news_api_key = secretKey.NEWS_API_KEY
-stocks_api_key = secretKey.STOCKS_API_KEY
+news_api_key = 'HJ0DL7JPVAG13E6O'
+stocks_api_key = '69c894ea614f4f6f93f71b26bcc5902c'
 
 STOCK = "TSLA"#To be Change
 COMPANY_NAME = "Tesla Inc"
