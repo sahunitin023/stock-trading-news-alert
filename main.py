@@ -6,16 +6,30 @@ from datetime import date
 news_api_key = secretKey.NEWS_API_KEY
 stocks_api_key = secretKey.STOCKS_API_KEY
 
-STOCK = "RKLB"#To be Change
+STOCK = "TSLA"#To be Change
 COMPANY_NAME = "Tesla Inc"
 
 stocks_endpoint = 'https://www.alphavantage.co/query'
+newsapi_endpoint = 'https://newsapi.org/v2/top-headlines'
 
 stockApiParams = {
     'function': 'TIME_SERIES_DAILY',
     'symbol': STOCK,
     'apikey': stocks_api_key,
 }
+
+newsapi_params = {
+    'apiKey': news_api_key,
+    'q': COMPANY_NAME
+}
+
+def getNews():
+    newsResponse = requests.get(newsapi_endpoint,params=newsapi_params)
+    newsResponse.raise_for_status()
+    data = newsResponse.json()['articles']
+    newsArticles = [i for index,i in enumerate(data) if index<3]
+    return newsArticles
+
 
 stocksResponse = requests.get(stocks_endpoint, params=stockApiParams)
 stocksResponse.raise_for_status()
@@ -25,7 +39,8 @@ closePrices = [data[i]['4. close'] for index, i in enumerate(data) if index < 2]
 diff_percent = ((float(closePrices[0]) - float(closePrices[1])) / float(closePrices[1])) * 100
 
 if diff_percent>5 or diff_percent <-5:
-    print("Get News")
+    news = getNews()
+
 
 
 
