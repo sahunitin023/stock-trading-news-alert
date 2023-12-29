@@ -1,8 +1,8 @@
 from twilio.rest import Client
 
-account_sid = 'ACa228bf51b57793614a2a678d22fd88da'
-auth_token = '654b2856ae916b3bff91cc6f0dff29f5'
-twilio_number = '+17346723505'
+account_sid = "TWILIO_ACC_SID"
+auth_token = "AUTH_TOKEN"
+twilio_number = "Twilio_Number"
 
 
 class SMSLogic:
